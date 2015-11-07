@@ -1,3 +1,4 @@
+require 'cgi'
 module DocumentCloud
   module Configurable
     attr_writer :email, :password
@@ -12,6 +13,7 @@ module DocumentCloud
     def configure
       yield self
       format_email!
+      format_password!
       self
     end
     
@@ -27,7 +29,10 @@ module DocumentCloud
     
       # Ensure email is correct format for RestClient posts
       def format_email!
-        @email.gsub!(/@/, "%40")
+        @email = CGI.escape @email
+      end
+      def format_password!
+        @password = CGI.escape @password
       end
     
   end
