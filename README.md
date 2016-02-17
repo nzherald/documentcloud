@@ -81,6 +81,7 @@ doc.print_annotations
 doc.related_article
 doc.text              # Raw parsed text from document
 doc.thumbnail         # Primary thumbnail of document
+doc.entities          # Returns a hash of entities and their relevance
 
 # Images
 doc.image(page, size) # Returns the image of a page at the specified size
@@ -116,6 +117,34 @@ project.id
 project.title
 project.description
 project.documents # Returns an array of Document objects
+```
+
+### Entities
+Entities takes a document id and returns a hash of entities, which
+include a value and relevance for each type of entity.
+
+```ruby
+entities = DocumentCloud.entities(2072158)
+
+# example output
+{
+  :person=>[{:value=>"Pita Sharples", :relevance=>0.112}],
+  :organization=>[{:value=>"Māori Party", :relevance=>0.48}],
+  :place=>[],
+  :term=>
+  [{:value=>"finance costs", :relevance=>0.552},
+   {:value=>"public services", :relevance=>0.526}],
+  :email=>[],
+  :phone=>[],
+  :city=>[],
+  :state=>[],
+  :country=>
+  [{:value=>"New Zealand", :relevance=>0.628},
+   {:value=>"Australia", :relevance=>0.302},
+   {:value=>"United States", :relevance=>0.295},
+   {:value=>"United Kingdom", :relevance=>0.295},
+   {:value=>"China", :relevance=>0.294}]
+ }
 ```
 
 
