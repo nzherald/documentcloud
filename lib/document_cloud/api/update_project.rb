@@ -20,7 +20,7 @@ module DocumentCloud
       private
             
         def project_path(project_id)
-          "#{PROJECT_PATH}/#{project_id.to_s}.json"
+          "#{PROJECT_PATH}/#{project_id.to_i}.json"
         end
       
     end
