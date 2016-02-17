@@ -6,7 +6,7 @@ module DocumentCloud
 
       # List projects
       #
-      # @returns [Hash] The fetched document entities
+      # @returns [DocumentCloud::Project] An array of fetched project entities
       def projects
         build_objects DocumentCloud::Project, get(PROJECTS_PATH)
       end
