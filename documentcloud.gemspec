@@ -16,11 +16,10 @@ Gem::Specification.new do |spec|
   spec.homepage      = 'https://github.com/mileszim/documentcloud'
   spec.licenses      = ['MIT']
 
-  spec.files         = `git ls-files -z`.split('\x0')
+  spec.files         = `git ls-files -z`.split("\x0")
   spec.test_files    = spec.files.grep(%r{^(test|spec|features)/})
   spec.require_paths = ['lib']
 
-  spec.add_development_dependency 'bundler', '~> 1.11'
   spec.add_development_dependency 'rake', '~> 10.5'
   spec.add_development_dependency 'rspec', '~> 3.4'
   spec.add_development_dependency 'vcr', '~> 3.0'
