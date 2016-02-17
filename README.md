@@ -102,6 +102,21 @@ results.documents # Array of documents of results:
 results.documents[0].title # First result title
 ```
 
+### Projects
+Projects returns an array of Project objects which contain a list of Documents and
+metadata about the project.
+
+```ruby
+projects = DocumentCloud.projects
+
+project = projects.first
+
+# Accessors
+project.id
+project.title
+project.description
+project.documents # Returns an array of Document objects
+```
 
 
 ## Information
