@@ -2,7 +2,7 @@ module DocumentCloud
   class Version
     MAJOR = 0 unless defined? DocumentCloud::Version::MAJOR
     MINOR = 3 unless defined? DocumentCloud::Version::MINOR
-    PATCH = 1 unless defined? DocumentCloud::Version::PATCH
+    PATCH = 2 unless defined? DocumentCloud::Version::PATCH
     PRE = nil unless defined? DocumentCloud::Version::PRE
 
     class << self
