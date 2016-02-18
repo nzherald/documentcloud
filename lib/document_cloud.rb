@@ -1,6 +1,7 @@
 require 'rest_client'
 require 'multi_json'
 require 'date'
+require 'open-uri'
 
 require_relative 'document_cloud/document'
 require_relative 'document_cloud/project'
