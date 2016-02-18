@@ -16,7 +16,7 @@ module DocumentCloud
       private
             
         def entities_path(document_id)
-          "#{DOCUMENT_PATH}/#{document_id.to_s}/#{ENTITIES_PATH}"
+          "#{DOCUMENT_PATH}/#{document_id.to_i}/#{ENTITIES_PATH}"
         end
       
     end

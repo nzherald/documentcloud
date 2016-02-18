@@ -24,7 +24,7 @@ module DocumentCloud
       private
             
         def document_path(document_id)
-          "#{DOCUMENT_PATH}/#{document_id.to_s}.json"
+          "#{DOCUMENT_PATH}/#{document_id.to_i}.json"
         end
       
     end
