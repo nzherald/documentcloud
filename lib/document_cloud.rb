@@ -1,5 +1,6 @@
 require 'rest_client'
 require 'multi_json'
+require 'uri'
 
 require_relative 'document_cloud/version'
 require_relative 'document_cloud/document'

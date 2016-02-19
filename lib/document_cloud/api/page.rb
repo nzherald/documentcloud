@@ -8,7 +8,7 @@ module DocumentCloud
       # @param id [String] The document id
       # @returns [Hash] The fetched document entities
       def page(id, page_number, url)
-        url = replace_page_number(url, page_number)
+        url = URI.escape(replace_page_number(url, page_number))
         text = get(url, {}, false)
         DocumentCloud::Page.new(id: id,
                                 page_number: page_number,
