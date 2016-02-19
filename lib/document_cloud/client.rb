@@ -67,7 +67,6 @@ module DocumentCloud
     end
 
     def construct_resource(url)
-      puts url, @email
       RestClient::Resource.new(url, user: @email, password: @password)
     end
 
