@@ -3,6 +3,7 @@ require_relative 'api/utils'
 require_relative 'api/search'
 require_relative 'api/upload'
 require_relative 'api/document'
+require_relative 'api/page'
 require_relative 'api/update'
 require_relative 'api/destroy'
 require_relative 'api/entities'
@@ -20,41 +21,59 @@ module DocumentCloud
     include DocumentCloud::API::Destroy
     include DocumentCloud::API::Entities
     include DocumentCloud::API::Projects
+    include DocumentCloud::API::Page
     include DocumentCloud::API::CreateProject
     include DocumentCloud::API::UpdateProject
     include DocumentCloud::Configurable
-    
+
     def initialize(options={})
       DocumentCloud::Configurable.keys.each do |key|
         instance_variable_set(:"@#{key}", options[key] || DocumentCloud.instance_variable_get(:"@#{key}"))
       end
     end
-    
+
     # Perform HTTP GET request
-    def get(path, params={})
-      RestClient.get request_base+path, {params: params}
+    def get(path, params = {}, use_request_base = true)
+      url = construct_url(path, use_request_base)
+      resource = construct_resource(url)
+      resource.get params
     end
-    
+
     # Perform HTTP POST request
-    def post(path, params={})
-      RestClient.post request_base+path, params
+    def post(path, params = {}, use_request_base = true)
+      url = construct_url(path, use_request_base)
+      resource = construct_resource(url)
+      resource.post params
     end
-    
+
     # Perform HTTP PUT request
-    def put(path, params={})
-      RestClient.put request_base+path, params
+    def put(path, params = {}, use_request_base = true)
+      url = construct_url(path, use_request_base)
+      resource = construct_resource(url)
+      resource.put params
     end
-    
+
     # Perform HTTP DELETE request
-    def delete(path)
-      RestClient.delete request_base+path
+    def delete(params = {}, use_request_base = true)
+      url = construct_url(path, use_request_base)
+      resource = construct_resource(url)
+      resource.delete
     end
-    
+
     private
-    
-      def request_base
-        "#{DocumentCloud::Default.http_mode}://#{@email}:#{@password}@#{DocumentCloud::Default.endpoint}"
-      end
-    
+
+    def construct_url(path, use_request_base)
+      use_request_base ? request_base + path : path
+    end
+
+    def construct_resource(url)
+      puts url, @email
+      RestClient::Resource.new(url, user: @email, password: @password)
+    end
+
+    def request_base
+      "#{DocumentCloud::Default.http_mode}://#{DocumentCloud::Default.endpoint}"
+    end
+
   end
 end
