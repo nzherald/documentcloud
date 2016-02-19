@@ -3,6 +3,7 @@ require_relative 'api/utils'
 require_relative 'api/search'
 require_relative 'api/upload'
 require_relative 'api/document'
+require_relative 'api/page'
 require_relative 'api/update'
 require_relative 'api/destroy'
 require_relative 'api/entities'
@@ -20,6 +21,7 @@ module DocumentCloud
     include DocumentCloud::API::Destroy
     include DocumentCloud::API::Entities
     include DocumentCloud::API::Projects
+    include DocumentCloud::API::Page
     include DocumentCloud::API::CreateProject
     include DocumentCloud::API::UpdateProject
     include DocumentCloud::Configurable
